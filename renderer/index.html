@@ -67,7 +67,7 @@
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                   </svg>
                 </button>
-                <button type="button" class="control-btn thinking-btn" id="homeThinkingBtn" title="Extended thinking ⇧⌘E">
+                <button type="button" class="control-btn thinking-btn" id="homeThinkingBtn" title="Extended thinking">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
@@ -78,58 +78,75 @@
                 <!-- Provider Selector Dropdown -->
                 <div class="dropdown-container" id="homeProviderDropdown">
                   <button type="button" class="provider-selector">
-                    <span class="provider-label">Claude</span>
+                    <span class="provider-label">OpenRouter</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                   </button>
                   <div class="dropdown-menu provider-menu">
-                    <div class="dropdown-item selected" data-value="claude">
+                    <div class="dropdown-item selected" data-value="opencode">
                       <div class="item-row">
-                        <span class="item-label">Claude</span>
+                        <span class="item-label">OpenRouter (GLM)</span>
                         <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                           <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
                       </div>
-                      <span class="item-desc">Claude Agent SDK</span>
+                      <span class="item-desc">Free & Paid Models</span>
                     </div>
-                    <div class="dropdown-item" data-value="opencode">
+                    <div class="dropdown-item" data-value="claude">
                       <div class="item-row">
-                        <span class="item-label">Opencode</span>
+                        <span class="item-label">Claude</span>
                       </div>
-                      <span class="item-desc">Opencode SDK</span>
+                      <span class="item-desc">Claude Agent SDK</span>
                     </div>
                   </div>
                 </div>
                 <!-- Model Selector Dropdown -->
                 <div class="dropdown-container" id="homeModelDropdown">
                   <button type="button" class="model-selector">
-                    <span class="model-label">Sonnet 4.5</span>
+                    <span class="model-label">BigPickle (DeepSeek)</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                   </button>
-                  <div class="dropdown-menu model-menu" data-provider="claude">
-                    <div class="dropdown-item" data-value="claude-opus-4-5-20250514">
+                  <div class="dropdown-menu model-menu">
+                    <!-- All-Rounder -->
+                    <div class="dropdown-item selected" data-value="deepseek/deepseek-chat">
                       <div class="item-row">
-                        <span class="item-label">Opus 4.5</span>
-                      </div>
-                      <span class="item-desc">Most capable for complex work</span>
-                    </div>
-                    <div class="dropdown-item selected" data-value="claude-sonnet-4-5-20250514">
-                      <div class="item-row">
-                        <span class="item-label">Sonnet 4.5</span>
+                        <span class="item-label">BigPickle (DeepSeek)</span>
                         <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                           <polyline points="20 6 9 17 4 12"></polyline>
                         </svg>
                       </div>
-                      <span class="item-desc">Best for everyday tasks</span>
+                      <span class="item-desc">All-Rounder (Free)</span>
                     </div>
-                    <div class="dropdown-item" data-value="claude-haiku-4-5-20250514">
+                    <!-- Cheap / High Volume -->
+                    <div class="dropdown-item" data-value="zhipu/glm-4-flash">
                       <div class="item-row">
-                        <span class="item-label">Haiku 4.5</span>
+                        <span class="item-label">GLM Flash</span>
                       </div>
-                      <span class="item-desc">Fastest for quick answers</span>
+                      <span class="item-desc">Cheap / High Volume</span>
+                    </div>
+                    <!-- Reasoning -->
+                    <div class="dropdown-item" data-value="openai/gpt-4o">
+                      <div class="item-row">
+                        <span class="item-label">OpenAI GPT-4o</span>
+                      </div>
+                      <span class="item-desc">Advanced Reasoning</span>
+                    </div>
+                    <!-- Coding -->
+                    <div class="dropdown-item" data-value="qwen/qwen-2.5-coder-32b-instruct">
+                      <div class="item-row">
+                        <span class="item-label">Qwen Coder</span>
+                      </div>
+                      <span class="item-desc">Optimized for Coding</span>
+                    </div>
+                    <!-- Balanced -->
+                    <div class="dropdown-item" data-value="anthropic/claude-3.5-sonnet">
+                      <div class="item-row">
+                        <span class="item-label">Claude Sonnet</span>
+                      </div>
+                      <span class="item-desc">Balanced Performance</span>
                     </div>
                   </div>
                 </div>
@@ -191,7 +208,7 @@
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                       </svg>
                     </button>
-                    <button type="button" class="control-btn thinking-btn" id="chatThinkingBtn" title="Extended thinking ⇧⌘E">
+                    <button type="button" class="control-btn thinking-btn" id="chatThinkingBtn" title="Extended thinking">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"></circle>
                         <polyline points="12 6 12 12 16 14"></polyline>
@@ -202,58 +219,75 @@
                     <!-- Provider Selector Dropdown -->
                     <div class="dropdown-container" id="chatProviderDropdown">
                       <button type="button" class="provider-selector">
-                        <span class="provider-label">Claude</span>
+                        <span class="provider-label">OpenRouter</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                           <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                       </button>
                       <div class="dropdown-menu provider-menu">
-                        <div class="dropdown-item selected" data-value="claude">
+                        <div class="dropdown-item selected" data-value="opencode">
                           <div class="item-row">
-                            <span class="item-label">Claude</span>
+                            <span class="item-label">OpenRouter (GLM)</span>
                             <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                               <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                           </div>
-                          <span class="item-desc">Claude Agent SDK</span>
+                          <span class="item-desc">Free & Paid Models</span>
                         </div>
-                        <div class="dropdown-item" data-value="opencode">
+                        <div class="dropdown-item" data-value="claude">
                           <div class="item-row">
-                            <span class="item-label">Opencode</span>
+                            <span class="item-label">Claude</span>
                           </div>
-                          <span class="item-desc">Opencode SDK</span>
+                          <span class="item-desc">Claude Agent SDK</span>
                         </div>
                       </div>
                     </div>
                     <!-- Model Selector Dropdown -->
                     <div class="dropdown-container" id="chatModelDropdown">
                       <button type="button" class="model-selector">
-                        <span class="model-label">Sonnet 4.5</span>
+                        <span class="model-label">BigPickle (DeepSeek)</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                           <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                       </button>
-                      <div class="dropdown-menu model-menu" data-provider="claude">
-                        <div class="dropdown-item" data-value="claude-opus-4-5-20250514">
+                      <div class="dropdown-menu model-menu">
+                        <!-- All-Rounder -->
+                        <div class="dropdown-item selected" data-value="deepseek/deepseek-chat">
                           <div class="item-row">
-                            <span class="item-label">Opus 4.5</span>
-                          </div>
-                          <span class="item-desc">Most capable for complex work</span>
-                        </div>
-                        <div class="dropdown-item selected" data-value="claude-sonnet-4-5-20250514">
-                          <div class="item-row">
-                            <span class="item-label">Sonnet 4.5</span>
+                            <span class="item-label">BigPickle (DeepSeek)</span>
                             <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                               <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                           </div>
-                          <span class="item-desc">Best for everyday tasks</span>
+                          <span class="item-desc">All-Rounder (Free)</span>
                         </div>
-                        <div class="dropdown-item" data-value="claude-haiku-4-5-20250514">
+                        <!-- Cheap / High Volume -->
+                        <div class="dropdown-item" data-value="zhipu/glm-4-flash">
                           <div class="item-row">
-                            <span class="item-label">Haiku 4.5</span>
+                            <span class="item-label">GLM Flash</span>
                           </div>
-                          <span class="item-desc">Fastest for quick answers</span>
+                          <span class="item-desc">Cheap / High Volume</span>
+                        </div>
+                        <!-- Reasoning -->
+                        <div class="dropdown-item" data-value="openai/gpt-4o">
+                          <div class="item-row">
+                            <span class="item-label">OpenAI GPT-4o</span>
+                          </div>
+                          <span class="item-desc">Advanced Reasoning</span>
+                        </div>
+                        <!-- Coding -->
+                        <div class="dropdown-item" data-value="qwen/qwen-2.5-coder-32b-instruct">
+                          <div class="item-row">
+                            <span class="item-label">Qwen Coder</span>
+                          </div>
+                          <span class="item-desc">Optimized for Coding</span>
+                        </div>
+                        <!-- Balanced -->
+                        <div class="dropdown-item" data-value="anthropic/claude-3.5-sonnet">
+                          <div class="item-row">
+                            <span class="item-label">Claude Sonnet</span>
+                          </div>
+                          <span class="item-desc">Balanced Performance</span>
                         </div>
                       </div>
                     </div>

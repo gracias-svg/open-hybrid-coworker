@@ -747,7 +747,7 @@ body {
   display: flex;
   animation: fadeIn 0.2s ease-out;
   width: 100%;
-  max-width: 680px;
+  max-width: 95%; /* Wider layout */
 }
 
 .message.user {
@@ -756,7 +756,8 @@ body {
 
 .message.assistant {
   justify-content: flex-start;
-  flex-direction: column;
+  flex-direction: row; /* Ensure icon and content are side-by-side */
+  gap: 12px;
 }
 
 /* User Message */
@@ -776,7 +777,14 @@ body {
   font-size: 15px;
   line-height: 1.7;
   color: var(--text-primary);
-  width: 100%;
+  flex: 1; /* Take remaining space */
+}
+
+.message-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 4px;
 }
 
 .assistant .message-content p {
@@ -1188,6 +1196,56 @@ body {
 .sidebar-toggle svg {
   width: 16px;
   height: 16px;
+}
+
+/* Sidebar Styles */
+.tool-call {
+  background: #f8f8f6;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.tool-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.status-badge {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.status-badge.running {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-badge.completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.tool-call pre {
+  background: #1a1a1a;
+  color: #00ff00;
+  padding: 8px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 11px;
+}
+
+.tool-output {
+  margin-top: 8px;
+  border-top: 1px solid #333;
+  padding-top: 8px !important;
 }
 
 .sidebar-section {

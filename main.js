@@ -1,77 +1,130 @@
-const { app, BrowserWindow, shell } = require('electron');
-const path = require('path');
+const { app, BrowserWindow, shell, ipcMain } = require("electron");
+const path = require("path");
+const fetch = require("node-fetch");
 
-const isDev = process.env.NODE_ENV === 'development';
-
-if (isDev) {
-  try {
-    // Enable live-reload for the main and renderer processes during development
-    require('electron-reload')(__dirname, {
-      electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
-      ignored: /server|node_modules/
-    });
-  } catch (err) {
-    console.warn('Live reload unavailable:', err);
-  }
-}
-
-// Global window reference
 let mainWindow;
 
-// Create Electron window
+/*
+====================================
+CREATE WINDOW
+====================================
+*/
+
 function createWindow() {
+
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
+
     webPreferences: {
+
+      preload: path.join(__dirname, "preload.js"),
+
+      // IMPORTANT FIXES
       nodeIntegration: false,
       contextIsolation: true,
-      preload: path.join(__dirname, 'preload.js'),
-      enableWebSQL: false,
-      webSecurity: true
+
+      // REQUIRED FOR OCC
+      sandbox: false,
+
+      // Allow local file scripts
+      webSecurity: false
     }
+
   });
 
-  // Load the app
-  mainWindow.loadFile(path.join(__dirname, 'renderer', 'index.html'));
+  const rendererPath = path.join(__dirname, "renderer", "index.html");
 
-  // Open DevTools in development (comment out for production)
-  // mainWindow.webContents.openDevTools();
+  console.log("Loading renderer from:", rendererPath);
 
-  mainWindow.on('closed', () => {
+  mainWindow.loadFile(rendererPath);
+
+  mainWindow.on("closed", () => {
     mainWindow = null;
   });
 
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);
-    return { action: 'deny' };
+    return { action: "deny" };
   });
 
-  mainWindow.webContents.on('will-navigate', (event, url) => {
-    // If navigating away from our app, open in external browser
-    if (!url.startsWith('file://')) {
+  mainWindow.webContents.on("will-navigate", (event, url) => {
+
+    if (!url.startsWith("file://")) {
       event.preventDefault();
       shell.openExternal(url);
     }
+
   });
+
 }
 
-// App lifecycle
-app.on('ready', () => {
-  console.log('Electron app ready');
-  createWindow();
+/*
+====================================
+PERMISSION IPC HANDLERS
+====================================
+*/
+
+ipcMain.on("permission:approve", async (event, data) => {
+
+  try {
+
+    await fetch("http://localhost:3001/permission/approve", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+  } catch (err) {
+
+    console.error("Permission forwarding failed:", err);
+
+  }
+
 });
 
-app.on('window-all-closed', () => {
-  // On macOS, apps stay active until user explicitly quits
-  if (process.platform !== 'darwin') {
+ipcMain.on("permission:deny", async (event, data) => {
+
+  try {
+
+    await fetch("http://localhost:3001/permission/deny", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+  } catch (err) {
+
+    console.error("Permission forwarding failed:", err);
+
+  }
+
+});
+
+/*
+====================================
+APP LIFECYCLE
+====================================
+*/
+
+app.whenReady().then(() => {
+
+  createWindow();
+
+  app.on("activate", () => {
+
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+
+  });
+
+});
+
+app.on("window-all-closed", () => {
+
+  if (process.platform !== "darwin") {
     app.quit();
   }
-});
 
-app.on('activate', () => {
-  // On macOS, re-create window when dock icon is clicked
-  if (mainWindow === null) {
-    createWindow();
-  }
 });
